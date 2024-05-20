@@ -83,14 +83,6 @@ const App = () => {
 
   if (isLoading) return <p>Loading....</p>;
 
-  const user = {
-    profilePicture: 'https://via.placeholder.com/300',
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+1234567890',
-    address: '123 Main St, Springfield, USA'
-  };
-
 
   return (
     <BrowserRouter>
@@ -119,7 +111,7 @@ const App = () => {
               />
             }
           />
-          <Route path="/user-profile" element={<UserProfile user={user} />} />
+          <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/product-form" element={<ProductForm />} />
 

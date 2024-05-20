@@ -61,6 +61,22 @@ const Header = () => {
           </Link>
 
           {user && (
+            <>
+              <Link to="/user-profile" className="btn btn-secondary">
+                Manage Profile
+              </Link>
+              <button
+                onClick={async () => {
+                  await signOut();
+                  dispatch(setUser(null));
+                }}
+              >
+                Log out
+              </button>
+            </>
+          )}
+
+          {/* {user && (
             <button
               onClick={async () => {
                 await signOut();
@@ -69,7 +85,8 @@ const Header = () => {
             >
               log out
             </button>
-          )}
+          )} */}
+          
         </div>
       </div>
 
