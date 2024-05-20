@@ -36,9 +36,9 @@ const ContactUs = () => {
           <h2>Contact Us</h2>
           <p>If you have any questions or inquiries, please fill out the form below and we'll get back to you as soon as possible.</p>
           <ul style={{ listStyle: 'none' }}>
-            <li>Address: 123 Street Name, City, Country</li>
-            <li>Email: info@sparepartsgallery.com</li>
-            <li>Phone: +1234567890</li>
+            <li>Address: Street - 24, Lakeside, Pokhara, Nepal</li>
+            <li>Email: esparepartsgallery@gmail.com</li>
+            <li>Phone: +977 9877765431</li>
           </ul>
         </div>
       </div>

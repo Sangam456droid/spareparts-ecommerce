@@ -28,7 +28,7 @@ const Header = () => {
         {/* Logo */}
         <div className="logo">
           <Link to="/" className="navbar-brand">
-            SpareParts.com {/*Have to add actual logo img*/}
+          <img src="/images/loo.png" alt="SpareParts.com" style={{ height: '50px', width: '100px' }} /> {/* Adjust style as needed */}
           </Link>
         </div>
 

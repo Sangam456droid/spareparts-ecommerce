@@ -33,7 +33,6 @@ export const addToCart = catchAsync(async (req, res, next) => {
   res.status(201).json({
     status: "success",
     data: {
-      ,
     },
   });
 });

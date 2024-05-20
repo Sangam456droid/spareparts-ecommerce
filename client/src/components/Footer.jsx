@@ -8,10 +8,10 @@ const Footer = () => {
         <div className="row">
           <div className="col-md-6">
             <h5><i className="bi bi-envelope-fill"></i> Contact Us</h5>
-            <p>123 Street Name</p>
-            <p>City, Country</p>
-            <p>Email: info@example.com</p>
-            <p>Phone: +1234567890</p>
+            <p>Street-24, Lakeside</p>
+            <p>Pokhara, Nepal</p>
+            <p>Email: espareparts@gmail.com</p>
+            <p>Phone: +977 9706666899</p>
           </div>
           <div className="col-md-6 text-md-right">
             <h5><i className="bi bi-list-ul"></i> Quick Links</h5>

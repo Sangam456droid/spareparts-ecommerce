@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "./store/userSlice";
 import AdminPanel from "./admin/AdminPanel";
 import ProductForm from "./admin/ProductForm";
+import UserProfile from "./components/UserProfile";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -82,6 +83,15 @@ const App = () => {
 
   if (isLoading) return <p>Loading....</p>;
 
+  const user = {
+    profilePicture: 'https://via.placeholder.com/300',
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    phone: '+1234567890',
+    address: '123 Main St, Springfield, USA'
+  };
+
+
   return (
     <BrowserRouter>
       <div>
@@ -109,7 +119,7 @@ const App = () => {
               />
             }
           />
-
+          <Route path="/user-profile" element={<UserProfile user={user} />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/product-form" element={<ProductForm />} />
 
