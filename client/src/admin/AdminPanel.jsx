@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
   getProducts,
-  addProduct as uploadProduct,
   deleteProduct as delProduct,
 } from "../services/product";
 
 const AdminPanel = () => {
   const [products, setProducts] = useState([]);
+  const {user} = useSelector(state => state.user)
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetch = async () => {
@@ -14,23 +17,15 @@ const AdminPanel = () => {
       if (products) setProducts(products);
     };
 
-    fetch();
-  }, []);
+    
+  if(!user?.isAdmin){
+    return navigate("/");
+  }
 
-  // Function to add a new product
-  const addProduct = async () => {
-    // Implement functionality to add a new product
+   fetch();
+  }, [user?.isAdmin, navigate]);
 
-    const product = await uploadProduct({
-      name: "test",
-      price: 45,
-      category: "helmet",
-      image: "lsjfls",
-    });
-    console.log(product);
 
-    setProducts((prev) => [product, ...prev]);
-  };
 
   // Function to edit a product
   const editProduct = (id) => {
@@ -46,10 +41,6 @@ const AdminPanel = () => {
     setProducts((prev) => prev.filter((i) => i.id !== id));
   };
 
-  // Function to approve a product
-  const approveProduct = (id) => {
-    // Implement functionality to approve a product
-  };
 
   return (
     <div className="container py-5">
@@ -87,12 +78,6 @@ const AdminPanel = () => {
                 >
                   Delete
                 </button>
-                <button
-                  className="btn btn-success"
-                  onClick={() => approveProduct(product.id)}
-                >
-                  Approve
-                </button>
               </td>
             </tr>
           ))}
@@ -100,9 +85,9 @@ const AdminPanel = () => {
       </table>
 
       {/* Button to add a new product */}
-      <button className="btn btn-primary" onClick={addProduct}>
+      <Link to="/product-form" className="btn btn-primary">
         Add Product
-      </button>
+      </Link>
     </div>
   );
 };

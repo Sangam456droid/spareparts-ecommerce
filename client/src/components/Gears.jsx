@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useTransition } from "react";
 import { useFetch } from "../hooks/useFetch";
 import { getProducts } from "../services/product";
+import { addToCart } from "../services/cart";
 
 const Gears = () => {
   // const glovesProducts = [
@@ -24,20 +25,26 @@ const Gears = () => {
   // ];
   
   const { data, isLoading } = useFetch(() =>
-    getProducts({ category: "riding-gears" })
+    getProducts({ category: "gears" })
   );
-  const [clickedItems, setClickedItems] = useState([]);
 
 
-  const isItemInCart = (id) => {
-    return clickedItems.includes(id);
+  const [isAdding, startTransition] = useTransition();
+
+  const add = (id) => {
+    startTransition(async () => {
+      try {
+        await addToCart({ productId: id, quantity: 1 });
+        alert("Product added to cart");
+      } catch (error) {
+        alert(error.message);
+      }
+    });
   };
 
-  const addToCart = (id) => {
-    if (!isItemInCart(id)) {
-      setClickedItems([...clickedItems, id]);
-    }
-  };
+
+
+  if(isLoading) return <p>LOading...</p>
 
 
   return (
@@ -48,20 +55,22 @@ const Gears = () => {
         {/* <h2 className="mb-3">Gloves</h2> */}
         <div className="row">
         {data.length === 0 && <p>No Product found</p>}
-          {data.map((product, index) => (
+          {data.map((product) => (
             <div key={product.id} className="col-lg-3 col-md-6 mb-4">
               <div className="card h-100 border-0">
                 <img src={product.image} className="card-img-top helmet-image" alt={product.name} />
                 <div className="card-body">
                   <h5 className="card-title">{product.name}</h5>
                   <p className="card-text">{product.price}</p>
-                  <a
+                  <button
                     onClick={() => {
-                      addToCart(product.id);
+                      add(product.id);
                     }}
-                    className="btn btn-primary btn-sm">
-                    {isItemInCart(product.id) ? "Added to cart" : "Add to cart"}
-                  </a>
+                    disabled={isAdding}
+                    className="btn btn-primary btn-sm"
+                  >
+                    Add to cart
+                  </button>
                 </div>
               </div>
             </div>
